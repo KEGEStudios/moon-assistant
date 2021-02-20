@@ -1,14 +1,19 @@
 use std::process::Command;
 
-pub struct CreateCommand {
+type Task = fn(command :CommandBase);
+
+pub struct CommandBase {
     pub command: String,
     pub args: Vec<String>,
+    pub task: Task
 }
 
-impl CreateCommand {
+impl CommandBase {
     pub fn run(&self) {
         let mut comd = Command::new(&self.command);
-        comd.arg(&self.args[0]);
+        for arg in &self.args{
+            comd.arg(arg);
+        }
         comd.status().expect("process failed to execute");
     }
 }
