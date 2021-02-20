@@ -1,5 +1,5 @@
 [package]
-name = "moon-assistant"
+name = "moon"
 version = "0.1.0"
 authors = ["kege.studios <kege.studios@gmail.com>"]
 edition = "2015"
