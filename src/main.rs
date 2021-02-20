@@ -1,11 +1,14 @@
-mod commands;
+use std::env;
 
-pub use crate::commands::create_command::*;
+mod commands;
+mod tools;
+
+mod manager_commands;
+
+pub use manager_commands::*;
 
 fn main() {
-    let a1 = CreateCommand {
-        command: String::from("next"),
-        args: vec!(String::from("--help")),
-    };
-    a1.run();
+    let manager: ManagerCoomands = ManagerCoomands::new();
+    let args: Vec<String> = env::args().collect();
+    manager.init(args).run();
 }
