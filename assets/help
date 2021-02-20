@@ -1,0 +1,28 @@
+Manage your Moon-Proyect development.
+
+Common commands:
+
+  moon create <output directory>
+    Create a new Moon project in the specified directory.
+
+  moon run [options]
+    Run your Moon-Proyect application.
+
+Usage: moon <command> [arguments]
+
+Global options:
+-h, --help                  Print this usage information.
+-v, --version               Reports the version of this tool.
+
+Available commands:
+  build                    Moon build commands.
+  create                   Create a new Moon project.
+  doctor                   Show information about the installed tooling.
+  run                      Run your Moon app on an attached device.
+  test                     Run Moon unit tests for the current project.
+  upgrade                  Upgrade your copy of Moon.
+  version                  List or switch Moon versions.
+
+Run "moon help <command>" for more information about a command.
+Run "moon help -v" for verbose help output, including less commonly used
+options.
