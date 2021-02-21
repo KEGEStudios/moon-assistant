@@ -1,0 +1,11 @@
+#!/bin/sh
+# moon-assistant shell setup
+# affix colons on either side of $PATH to simplify matching
+case ":${PATH}:" in
+    *:"$HOME/opt/moon-assistant/build":*)
+        ;;
+    *)
+        # Prepending path in case a system-installed moon-assistant needs to be overridden
+        export PATH="$PATH:$HOME/opt/moon-assistant/build"
+        ;;
+esac
