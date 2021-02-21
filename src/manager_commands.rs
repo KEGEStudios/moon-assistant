@@ -3,6 +3,7 @@ pub use crate::tools::stack::*;
 
 use std::env;
 use std::fs;
+use std::process::Command;
 
 pub struct ManagerCoomands {
     pub stack: Stack<CommandBase>,
@@ -27,7 +28,6 @@ fn moon_version(command: CommandBase) {
 }
 
 fn moon_help(command: CommandBase) {
-    //command.run();
     let home = env::home_dir()
         .unwrap()
         .into_os_string()
@@ -38,6 +38,26 @@ fn moon_help(command: CommandBase) {
     let contents =
         fs::read_to_string("assets/help").expect("Something went wrong reading the file HELP");
     println!("{}", contents);
+}
+
+fn moon_upgrade(command: CommandBase) {
+    command.run();
+    let home = env::home_dir()
+        .unwrap()
+        .into_os_string()
+        .into_string()
+        .unwrap();
+    assert!(env::set_current_dir(home.clone() + "/opt/moon-assistant").is_ok());
+
+    let mut comd_pull_moon_assistant = Command::new("git");
+    comd_pull_moon_assistant.arg("pull");
+    comd_pull_moon_assistant.status().expect("process failed to execute");
+
+    assert!(env::set_current_dir(home.clone() + "/opt/Moon").is_ok());
+
+    let mut comd_pull_moon = Command::new("git");
+    comd_pull_moon.arg("pull");
+    comd_pull_moon.status().expect("process failed to execute");
 }
 
 impl ManagerCoomands {
@@ -112,6 +132,13 @@ impl ManagerCoomands {
                         command: String::from("next"),
                         args: vec![String::from("run")],
                         task: next_command,
+                    });
+                }
+                "upgrade" => {
+                    self.stack.push(CommandBase {
+                        command: String::from("next"),
+                        args: vec![String::from("upgrade")],
+                        task: moon_upgrade,
                     });
                 }
                 _ => println!(""),
