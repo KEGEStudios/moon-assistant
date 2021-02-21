@@ -36,13 +36,6 @@ clone_moon_assistant_rep(){
     git clone https://github.com/KEGEStudios/moon-assistant
 }
 
-build_moon-assistant(){
-    cd $HOME/opt/Next
-    mkdir -p $HOME/opt/moon-assistant/build
-    cargo build
-    cp $HOME/opt/moon-assistant/target/debug/moon $HOME/opt/moon-assistant/build/moon
-}
-
 clone_moon_rep(){
     mkdir -p $HOME/opt
     cd $HOME/opt
@@ -54,7 +47,6 @@ main(){
     check_install_cargo
     install_next
     clone_moon_assistant_rep
-    build_moon-assistant
     clone_moon_rep
 }
 
