@@ -39,7 +39,7 @@ clone_moon_assistant_rep(){
 clone_moon_rep(){
     mkdir -p $HOME/opt
     cd $HOME/opt
-    git clone https://github.com/KEGEStudios/Moon
+    git clone --recursive https://github.com/KEGEStudios/Moon
 }
 
 main(){

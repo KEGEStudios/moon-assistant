@@ -7,8 +7,14 @@ build_moon_assistant(){
 
 build_moon(){
     cd $HOME/opt/Moon
-    mkdir -p $HOME/opt/Moon/build/cmake
-    next build
+    mkdir -p $HOME/opt/Moon/build
+    cd $HOME/opt/Moon/build
+    cmake ..
+
+    cd $HOME/opt/Moon/test/googletest
+    mkdir -p $HOME/opt/Moon/test/googletest/build
+    cd $HOME/opt/Moon/test/googletest/build
+    cmake ..
 }
 
 main(){
